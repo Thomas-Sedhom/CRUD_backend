@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> name is => <%= info.name %></h2>
+    <p> age is => <%= info.age %></p>
+
+    <!--data-doc="info._id" to let me can bring id to js file <scrpt></scrpt>-->
+    <a class="delet" href="" data-doc="<%= info._id %>">delete</a>
+
+    <script>
+        const delet = document.querySelector(".delet");
+
+        delet.addEventListener("click", (e) => {
+
+            const endpoint = `/blog/${delet.dataset.doc}`;
+
+            fetch(endpoint, {method: "DELETE"})
+                .then(() => window.location.href = "/blog")
+                .catch((err) => console.log(err))
+        })
+    </script>
+</body>
+</html>
